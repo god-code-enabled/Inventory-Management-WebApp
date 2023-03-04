@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>View Inventory</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        @media only screen and (max-width: 320px) {
+            table {
+                font-size: 14px;
+            }
+
+            .table-cell {
+                padding: 10px;
+            }
+
+            th {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body class="webpage ">
+    <h1>Inventory</h1>
+     
+    <table style="margin-left: -100px;">
+        <thead>
+            <tr>
+                <th class="table-cell">
+                    <a href="{{ url_for('view', sort_by='name', sort_order=sort_order) }}">Product</a>
+                </th>
+                <th class="table-cell">
+                    <a href="{{ url_for('view', sort_by='price', sort_order=sort_order) }}">Price</a>
+                </th>
+                <th class="table-cell">
+                    <a href="{{ url_for('view', sort_by='quantity', sort_order=sort_order) }}">Quantity</a>
+                </th>
+                <th class="table-cell">Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for name, details in inventory %}
+            <tr>
+                <td class="table-cell">{{ name }}</td>
+                <td class="table-cell">{{ details['price'] }}</td>
+                <td class="table-cell">{{ details['quantity'] }}</td>
+                <td class="table-cell">{{ "{:.2f}".format(details['price'] * details['quantity']) }}</td>
+            </tr>
+            {% endfor %}
+            <tr>
+                <td colspan="3">Grand Total:</td>
+                <td class="table-cell">{{ "{:.2f}".format(total) }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <form method="get" action="{{ url_for('add') }}">
+        <button type="submit">Add item</button>
+    </form>
+    <form method="get" action="{{ url_for('index') }}">
+        <button type="submit">Main Menu</button>
+    </form>
+</body>
+</html>

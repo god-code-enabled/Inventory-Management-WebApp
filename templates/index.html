@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+<head>
+    <title>Inventory Management</title>
+    <head>
+    <title>Add Product</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Inventory Management</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+</head>
+<body class="webpage index-page mobile-index">
+  <div class="header">
+    <h1 class = "index-h1">Inventory Management System</h1>
+  </div>
+<form method="get" action="{{ url_for('add') }}">
+    <button type="submit">Add Product</button>
+</form>
+  
+<form method="get" action="{{ url_for('view') }}">
+    <button type="submit">View Inventory</button>
+</form>  
+
+  <form action="{{ url_for('search') }}" method="GET">
+    <button type="submit">Search Inventory</button>
+</form>
+
+</body>
+</html>

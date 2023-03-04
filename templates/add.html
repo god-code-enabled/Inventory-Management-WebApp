@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport"      
+    content="width=device-width, initial-       scale=1.0, user-scalable=no">
+    
+    <title>Add Product</title>
+    
+    <title>Add New Item </title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+
+
+</head>
+  
+<body class="webpage">
+    <h1>Add New Item To Inventory</h1>
+    <form method="POST" action="{{ url_for('add') }}">
+        <label for="name">Product Name:</label>
+        <input type="text" name="name" id="name" placeholder = "?.." required><br>
+
+        <label for="price">Price:</label>
+        <input type="number" name="price" id="price" step="0.01" placeholder = 0 required><br>
+
+        <label for="quantity">Quantity:</label>
+        <input type="number" name="quantity" id="quantity" placeholder = 0 required><br>
+        <div></p></p> </div>
+        <div><p></p></div>
+        <input type="submit" value="Add Item">
+    </form>
+    <div></p></p> </div>
+    <div><p></p></div>
+    <form method="get" action="{{ url_for('view') }}">
+        <button type="submit">View Inventory</button>
+    </form>
+
+    <script>
+        function viewInventory() {
+            // Disable the required fields
+            document.getElementById("name").required = false;
+            document.getElementById("price").required = false;
+            document.getElementById("quantity").required = false;
+
+            // Submit the form
+            document.forms[0].submit();
+        }
+    </script>
+</body>
+</html>
