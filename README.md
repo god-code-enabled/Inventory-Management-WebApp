@@ -12,6 +12,8 @@ To run this web app, you will need to have the following dependencies installed:
 - itsdangerous==2.1.2
 - Jinja2==3.1.2
 - MarkupSafe==2.1.2
+- plotly==5.13.1
+- tenacity==8.2.2
 - Werkzeug==2.2.3
 
 You can install these dependencies using the `requirements.txt` file by running the following command:
