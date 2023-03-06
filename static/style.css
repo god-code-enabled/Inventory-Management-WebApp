@@ -7,6 +7,10 @@
   .mobile-index {
     zoom: 50%;
     font-size: 10px;
+    #live-graph {
+        max-width: 32px;
+        transform: translateX(-150px);
+  }
   }
 
   .webpage {
@@ -63,7 +67,7 @@
 
 @media only screen and (max-width: 428px) {
   .mobile-index {
-    zoom: 200%;
+    zoom: 100%;
     font-size: 24px;
   }
 
@@ -134,7 +138,8 @@
   font-size: 20px;
   cursor: pointer;
   display: block;
-  margin: 20px auto;
+  margin: 10px auto;
+  margin-left: 40px;
   width: 200px;
   box-shadow: 0 5px 0 #006388;
   transition: 0.2s;
@@ -217,7 +222,7 @@ tr:last-child td:first-child {
   box-shadow: 5px 5px 5px #00364a;
   border-radius: 10px;
   display: inline-block;
-  margin-left: -40px;
+  margin-left: 3px;
 }
   
 }

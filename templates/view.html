@@ -38,6 +38,7 @@
                     <a href="{{ url_for('view', sort_by='quantity', sort_order=sort_order) }}">Quantity</a>
                 </th>
                 <th class="table-cell">Total</th>
+                 <th class="table-cell">Delete Item</th>
             </tr>
         </thead>
         <tbody>
@@ -47,11 +48,14 @@
                 <td class="table-cell">{{ details['price'] }}</td>
                 <td class="table-cell">{{ details['quantity'] }}</td>
                 <td class="table-cell">{{ "{:.2f}".format(details['price'] * details['quantity']) }}</td>
+                <td><a href="{{ url_for('remove', name=name) }}" onclick="event.preventDefault(); var qty = prompt('Enter quantity to remove:'); if (qty) { window.location.href = '{{ url_for('remove', name=name) }}?qty=' + qty; }">Remove</a>
+</td>
             </tr>
             {% endfor %}
             <tr>
                 <td colspan="3">Grand Total:</td>
                 <td class="table-cell">{{ "{:.2f}".format(total) }}</td>
+                <td><a href="{{ url_for('view') }}">Refresh</a></td>
             </tr>
         </tbody>
     </table>

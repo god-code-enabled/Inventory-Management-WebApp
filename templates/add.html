@@ -19,10 +19,10 @@
     <h1>Add New Item To Inventory</h1>
     <form method="POST" action="{{ url_for('add') }}">
         <label for="name">Product Name:</label>
-        <input type="text" name="name" id="name" placeholder = "?.." required><br>
+        <input type="text" name="name" id="name" placeholder = "..." required><br>
 
         <label for="price">Price:</label>
-        <input type="number" name="price" id="price" step="0.01" placeholder = 0 required><br>
+        <input type="number" name="price" id="price" step="0.01" placeholder = $0.00 required><br>
 
         <label for="quantity">Quantity:</label>
         <input type="number" name="quantity" id="quantity" placeholder = 0 required><br>

@@ -1,71 +1,35 @@
-<!doctype html>
-<html>
-<!-- Index displays main menu  -->
-    <title>Inventory Management</title>
-    <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Inventory Management</title>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
-    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-    <script src="{{ url_for('static', filename='budget_warning.js') }}"></script> 
+function showBudgetWarning(xValue, yValue, budget) {
+  if (yValue >= budget * 0.8 && yValue < budget) {
+    // Display a warning if spending is between 80% and 100% of the budget
+    alert("Warning: Your spending is approaching your budget limit.");
+  } else if (yValue >= budget) {
+    // Display an error if spending exceeds the budget
+    alert("Error: Your spending has exceeded your budget limit!");
+  }
+}
 
-    <style>
-        #live-graph {
-            text-align: center;
-            max-width: 800px;
-            margin: 0 auto;
-            transform: translateX(-175px);
+var budgetRequest = new XMLHttpRequest();
+budgetRequest.open('GET', '/static/budget.json', true);
+budgetRequest.onload = function() {
+  if (budgetRequest.status >= 200 && budgetRequest.status < 400) {
+    // Parse the JSON response
+    var budgetJSON = JSON.parse(budgetRequest.responseText);
 
-            @media (min-width: 480px) {
-            /* For screens wider than 480px */
-            #live-graph {
-                max-width: 300px;
-                transform: translateX(-100px);
-            }
-        }
-    </style>
-      
-</head>
+    // Get the budget value from the JSON response
+    var budget = budgetJSON.budget;
 
-<body class="webpage index-page mobile-index">
-    <div class="header">
-        <h1 class="index-h1">Inventory Management System</h1>
-    </div>
+    // Make a GET request for the data JSON file
+    var dataRequest = new XMLHttpRequest();
+    dataRequest.open('GET', '/static/data.json', true);
+    dataRequest.onload = function() {
+      if (dataRequest.status >= 200 && dataRequest.status < 400) {
+        // Parse the JSON response
+        var dataJSON = JSON.parse(dataRequest.responseText);
 
-    <form method="get" action="{{ url_for('add') }}">
-        <button type="submit">Add Product</button>
-    </form>
+        // Get the grand total value from the JSON response
+        var grand_total = dataJSON.grand_total;
 
-    <form method="get" action="{{ url_for('view') }}">
-        <button type="submit">View Inventory</button>
-    </form>  
-
-    <form action="{{ url_for('search') }}" method="GET">
-        <button type="submit">Search Inventory</button>
-    </form>
-
-
-    <div class="graph-container">
-        <div id="live-graph"></div>
-    </div>
-  
-    <form action="{{ url_for('update_budget') }}" method="POST">
-        <label for="budget">Set Budget:</label>
-        <input type="text" id="budget" name="budget" placeholder="$0.00" onkeypress='return event.charCode >= 48 && event.charCode <= 57' required onblur="formatNumber()">
-
-
-        <button type="submit">Save</button> 
-    </form>
-
-    <script>
-        function formatNumber() {
-            var budgetInput = document.getElementById('budget');
-            var value = parseInt(budgetInput.value.replace(/,/g, ''));
-            budgetInput.value = value.toLocaleString('en-US');
-        }
-    </script>
-
-    <script>
+        // Set up the Plotly graph
         var graphDiv = document.getElementById('live-graph');
         var graphData = localStorage.getItem('graphData');
 
@@ -123,9 +87,9 @@
             type: 'line',
             xref: 'paper',
             x0: 0,
-            y0: {{ budget|safe }},
+            y0: budget,
             x1: 1,
-            y1: {{ budget|safe }},
+            y1: budget,
             line:{
                 color: 'red',
                 width: 2,
@@ -149,5 +113,6 @@
             layout: graphDiv.layout
         };
         localStorage.setItem('graphData', JSON.stringify(updatedData));
-    }, 1000);
-</script>
+
+        // Check if the budget warning needs to be displayed
+      showBudgetWarning(new Date().toISOString(), {{ grand_total|safe }}, budget);
