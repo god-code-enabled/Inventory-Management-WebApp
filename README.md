@@ -1,6 +1,6 @@
 # Inventory Management Web App
 
-This is a Flask web app that allows you to manage an inventory of items. You can add new items, update the quantity of existing items, view the inventory, and search for items by name.
+This is a Flask web app that allows you to manage an inventory of items. You can add new items, update the quantity of existing items, view the inventory, and search for items by name. Recently added a budget tracking chart with plotly.
 
 ## Dependencies
 
