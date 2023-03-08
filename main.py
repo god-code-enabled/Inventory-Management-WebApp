@@ -110,8 +110,11 @@ def index():
         x_data.append(now.strftime("%m/%d/%Y %I:%M:%S %p"))
         y_grand_total.append(grand_total)
 
+        # Update the last inventory state
+        last_inventory_state = current_inventory_state
+
         # Write the updated data to the JSON file
-        data = {"x_data": x_data, "y_grand_total": y_grand_total, "last_inventory_state": current_inventory_state}
+        data = {"x_data": x_data, "y_grand_total": y_grand_total, "last_inventory_state": last_inventory_state}
         with open("data.json", "w") as f:
             json.dump(data, f)
     else:
@@ -174,16 +177,27 @@ def add():
         y_item_count.append(quantity)
         y_total_cost.append(item_total_cost)
         y_grand_total.append(round(sum(details["price"] * details["quantity"] for details in inventory.values()), 2))
-        
+
+        # Load existing data from file or initialize empty data
+        try:
+            with open('data.json', 'r') as f:
+                data = json.load(f)
+        except FileNotFoundError:
+            data = {"x_data": [], "y_grand_total": [], "last_inventory_state": None}
+            
         # Add the current date/time to the x_data list
         now = datetime.now()
         x_data.append(now.strftime("%m/%d/%Y %I:%M:%S %p"))
         
-        # Write data to a file
-        data = {"x_data": x_data, "y_grand_total": y_grand_total}
+        # Append the current date/time and new grand total to the existing data
+        now = datetime.now()
+        data["x_data"].append(now.strftime("%m/%d/%Y %I:%M:%S %p"))
+        data["y_grand_total"].append(y_grand_total[-1])
+        data["last_inventory_state"] = str(inventory)
+
+        # Write the updated data to the JSON file
         with open("data.json", "w") as f:
             json.dump(data, f)
-        return redirect(url_for("view"))
 
     # Update the graph layout
     layout = go.Layout(title="Inventory Statistics",
@@ -240,10 +254,22 @@ def remove(name):
         now = datetime.now()
         x_data.append(now.strftime('%m/%d/%Y %I:%M:%S %p'))
 
-        # Update the data in the JSON file
-        data = {'x_data': x_data, 'y_grand_total': y_grand_total, 'last_inventory_state': str(inventory)}
+          # Load existing data from file or initialize empty data
+        try:
+            with open('data.json', 'r') as f:
+                data = json.load(f)
+        except FileNotFoundError:
+            data = {"x_data": [], "y_grand_total": [], "last_inventory_state": None}
+
+            # Append the current date/time and new grand total to the existing data
+        data["x_data"].append(now.strftime('%m/%d/%Y %I:%M:%S %p'))
+        data["y_grand_total"].append(y_grand_total[-1])
+        data["last_inventory_state"] = str(inventory)
+    
+        # Write the updated data to the JSON file
         with open('data.json', 'w') as f:
             json.dump(data, f)
+
 
     else:
         flash(f'{name} not found in inventory.', 'error')
