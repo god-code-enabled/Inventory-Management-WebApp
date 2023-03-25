@@ -1,0 +1,1 @@
+9999999999{"name": "Flask-Bootstrap", "version": "3.3.7.1", "summary": "An extension that includes Bootstrap in your project, without any boilerplate code.", "platform": "any", "requires_dist": ["Flask>=0.8", "dominate", "visitor"], "requires_python": null, "files": [], "_cache_version": "1.0.0"}

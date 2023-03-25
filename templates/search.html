@@ -6,17 +6,31 @@
     <title>Inventory Management</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
 </head>
+<<<<<<< HEAD
 <body class="webpage mobile-index">
     <h1 class>Search Inventory</h1>
     <form method="POST" action="{{ url_for('search') }}">
         <label for="name">Name:</label>
         <input type="text" name="name" placeholder = "search..">
         <input type="submit" value="Search">
+=======
+<body class="search-body">
+    <h1 class="search-h1">Search Inventory</h1>
+    <form method="POST" action="{{ url_for('search') }}">
+        <label for="name">Name:</label>
+        <input type="text" name="name" placeholder = "search..">
+        <input type="submit" value="Search" class= "add-item-button">
+>>>>>>> 02abf5c (changed app layout, added media queries, fixed budget function)
     </form>
     {% if name %}
         {% if details %}
             <h2>Search Results:</h2>
+<<<<<<< HEAD
             <table>
+=======
+            <div class="results-container">   
+            <table class="results">
+>>>>>>> 02abf5c (changed app layout, added media queries, fixed budget function)
                 <tr>
                     <th>Product</th>
                     <th>Price</th>
@@ -38,6 +52,10 @@
                     <td>{{ total }}</td>
                 </tr>
             </table>
+<<<<<<< HEAD
+=======
+            </div>    
+>>>>>>> 02abf5c (changed app layout, added media queries, fixed budget function)
         {% else %}
             <p>No matching items found</p>
         {% endif %}

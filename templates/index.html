@@ -3,12 +3,18 @@
 <!-- Index displays main menu  -->
     <title>Inventory Management</title>
     <head>
+<<<<<<< HEAD
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+=======
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=0.8">
+>>>>>>> 02abf5c (changed app layout, added media queries, fixed budget function)
     <title>Inventory Management</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <script src="{{ url_for('static', filename='budget_warning.js') }}"></script> 
 
+<<<<<<< HEAD
     <style>
         #live-graph {
             text-align: center;
@@ -57,12 +63,70 @@
         <button type="submit">Save</button> 
     </form>
 
+=======
+</head>
+
+<body >
+<!--   <div class="nav-container">
+   <nav>
+            <ul>
+                <li><a href="{{ url_for('add') }}">Add Product</a></li>
+                <li><a href="{{ url_for('view') }}">View Inventory</a></li>
+                <li><a href="{{ url_for('search') }}">Search Inventory</a></li>
+            </ul>
+        </nav>
+  </div> -->
+    <div class="header">
+        <h1 class="index-h1">I.B.M. System</h1>
+    </div>
+
+    <div class="graph-container">
+        <div id="live-graph"></div>
+    </div>
+  <div class="button-container">
+      <form method="get" action="{{ url_for('add') }}">
+        <button type="submit">Add Product</button>
+      </form>
+    
+      <form method="get" action="{{ url_for('view') }}">
+        <button type="submit">View Inventory</button>
+      </form>  
+    
+      <form action="{{ url_for('search') }}" method="GET">
+        <button type="submit">Search Inventory</button>
+      </form>   
+    </div>
+  
+  
+      <div class="search-container">   
+        <form action="{{ url_for('update_budget') }}" method="POST" id="budget-form">
+          <label for="budget">Set Budget:</label><br>
+          <input type="text" id="budget" name="budget" placeholder="$0.00" onkeypress='return event.charCode >= 48 && event.charCode <= 57' required onblur="formatNumber()"><br>
+          <button type="submit">Save</button> 
+      </form> 
+     </div>    
+
+ 
+    <form action="{{ url_for('update_budget') }}" method="POST">
+      
+>>>>>>> 02abf5c (changed app layout, added media queries, fixed budget function)
     <script>
         function formatNumber() {
             var budgetInput = document.getElementById('budget');
             var value = parseInt(budgetInput.value.replace(/,/g, ''));
             budgetInput.value = value.toLocaleString('en-US');
         }
+<<<<<<< HEAD
+=======
+
+        var budgetForm = document.getElementById('budget-form');
+        budgetForm.addEventListener('submit', function(event) {
+            var budgetInput = document.getElementById('budget');
+            if (isNaN(parseInt(budgetInput.value.replace(/,/g, '')))) {
+                event.preventDefault();
+            }
+        });
+>>>>>>> 02abf5c (changed app layout, added media queries, fixed budget function)
     </script>
 
     <script>

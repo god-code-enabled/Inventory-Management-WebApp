@@ -1,1 +1,5 @@
+<<<<<<< HEAD
 {"budget": 300000}
+=======
+{"budget": 100000}
+>>>>>>> 02abf5c (changed app layout, added media queries, fixed budget function)
