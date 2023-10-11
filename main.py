@@ -1,32 +1,25 @@
-<<<<<<< HEAD
 import plotly.graph_objs as go
+import logging
 import plotly
 import json
-import os
 from datetime import datetime
-from flask import Flask, render_template, request, redirect, url_for, flash
-import pickle
-import secrets
-
-
-app = Flask(__name__)
-app.secret_key = secrets.token_hex(16)
-x_data = []
-y_item_count = []
-y_total_cost = []
-y_grand_total = []  # Initialize the list here
-=======
-import os
-import plotly.graph_objs as go
-import plotly
-import json
-from datetime import datetime, timezone
+import requests
 from flask import Flask, render_template, request, redirect, url_for, flash
 import pickle
 import secrets
 import gunicorn.app.base
-import logging
+from appdynamics.agent import api
+import os
 
+appd = api
+appd_secret = os.environ.get('APPDYNAMICS_SECRET')
+if appd_secret:
+    appd.init(appd_secret)
+
+# now = datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M:%S')
+response = requests.get('http://worldtimeapi.org/api/ip')
+data = response.json()
+now = datetime.fromisoformat(data['datetime']).strftime('%Y-%m-%d %H:%M:%S')
 
 port = int(os.getenv('PORT', '8080'))
 
@@ -64,7 +57,6 @@ x_data = []
 y_item_count = []
 y_total_cost = []
 y_grand_total = []  
->>>>>>> 02abf5c (changed app layout, added media queries, fixed budget function)
 
 # Load inventory from file or initialize an empty dictionary
 inventory_file = "inventory.pickle"
@@ -96,11 +88,6 @@ try:
 except FileNotFoundError:
     data = {}
 
-<<<<<<< HEAD
-# to get budget and draw line on chart
-@app.route('/update_budget', methods=['POST'])
-def update_budget():
-=======
  # Load budget from file
 def load_budget():  
     try:
@@ -116,7 +103,6 @@ def load_budget():
 @app.route('/update_budget', methods=['POST'])
 def update_budget():
 
->>>>>>> 02abf5c (changed app layout, added media queries, fixed budget function)
     # Get the new budget value from the form data
     new_budget = request.form['budget']
 
@@ -135,18 +121,6 @@ def update_budget():
     return redirect(url_for('index', budget=new_budget))
 
 
-<<<<<<< HEAD
-
-# Define a custom Jinja2 filter for the round() function
-@app.template_filter("round")
-def _jinja2_filter_round(number, ndigits=0):
-    return round(number, ndigits)
-
-@app.route("/data")
-def data():
-    data = {"x": x_data[-1], "y": y_grand_total[-1]}
-    return json.dumps(data)
-=======
 # Define a custom Jinja2 filter for the round() function
 @app.template_filter("round")
 def _jinja2_filter_round(number, ndigits=0):
@@ -156,23 +130,14 @@ def _jinja2_filter_round(number, ndigits=0):
 def data():
   data = {"x": x_data[-1], "y": y_grand_total[-1]}
   return json.dumps(data)
->>>>>>> 02abf5c (changed app layout, added media queries, fixed budget function)
 
 
 # Define the sum function as a global variable
 def my_sum(iterable):
-<<<<<<< HEAD
-    return sum(iterable)
-app.jinja_env.globals.update(sum=my_sum)
-
-
-
-=======
   return sum(iterable)
 app.jinja_env.globals.update(sum=my_sum)
 
 
->>>>>>> 02abf5c (changed app layout, added media queries, fixed budget function)
 @app.route("/")
 def index():
     # Load x_data and y_grand_total from file
@@ -194,11 +159,7 @@ def index():
         grand_total = round(sum(details["price"] * details["quantity"] for details in inventory.values()), 2)
 
         # Add the current date/time and grand total to the data for the graph
-<<<<<<< HEAD
-        now = datetime.now()
-=======
-        now = datetime.now(timezone.utc).astimezone()
->>>>>>> 02abf5c (changed app layout, added media queries, fixed budget function)
+     
         x_data.append(now.strftime("%m/%d/%Y %I:%M:%S %p"))
         y_grand_total.append(grand_total)
 
@@ -213,40 +174,17 @@ def index():
         grand_total = y_grand_total[-1] if y_grand_total else 0
 
     # Load budget from file
-<<<<<<< HEAD
-    try:
-        with open('budget.json', 'r') as f:
-            budget_data = json.load(f)
-            budget = budget_data.get("budget", 0)
-    except FileNotFoundError:
-        budget = 0
-=======
     budget = load_budget()
->>>>>>> 02abf5c (changed app layout, added media queries, fixed budget function)
 
     # Create the real-time graph
     data = [{"x": x_data, "y": y_grand_total, "name": "Grand Total", "mode": "lines+markers", "marker": {"size": 5, "color": "blue"}, "line": {"width": 1}},
             {"x": x_data, "y": [budget] * len(x_data), "name": "Budget", "mode": "lines", "line": {"width": 1, "dash": "dash", "color": "gray"}}]
     layout = go.Layout(title="Spending Trend",
-<<<<<<< HEAD
-                       xaxis=dict(title="Date and Time", tickfont=dict(size=8)),
-=======
                        xaxis=dict(title="Date and Time", tickfont=dict(size=6)),
->>>>>>> 02abf5c (changed app layout, added media queries, fixed budget function)
                        yaxis=dict(title="Grand Total", tickformat= "$, 2f"),
                        plot_bgcolor='rgb(125, 175, 200)',
                        paper_bgcolor='rgb(140, 180, 180)',
                        height=600,
-<<<<<<< HEAD
-                       width=625,
-                       margin=dict(l=100))
-
-    graphJSON = json.dumps({"data": data, "layout": layout}, cls=plotly.utils.PlotlyJSONEncoder)
-
-    return render_template("index.html", graphJSON=graphJSON, grand_total=grand_total, budget=budget)
-
-
-=======
                        width=600,
                        margin=dict(l=100))
         
@@ -262,16 +200,12 @@ def index():
         
     return render_template("index.html", graphJSON=graphJSON, grand_total=grand_total, budget=budget, fig=fig)
     
->>>>>>> 02abf5c (changed app layout, added media queries, fixed budget function)
 
 
 @app.route("/add", methods=["GET", "POST"])
 def add():
-<<<<<<< HEAD
-=======
     budget = load_budget()
     print(budget)
->>>>>>> 02abf5c (changed app layout, added media queries, fixed budget function)
     # Load x_data and y_grand_total from file
     try:
         with open('data.json', 'r') as f:
@@ -284,46 +218,6 @@ def add():
 
     if request.method == "POST":
         name = request.form["name"]
-<<<<<<< HEAD
-        price = float(request.form["price"])
-        quantity = int(request.form["quantity"])
-        if name in inventory:
-            # Update quantity of existing item
-            inventory[name]["quantity"] += quantity
-        else:
-            # Add new item to inventory
-            inventory[name] = {"price": price, "quantity": quantity}
-        with open(inventory_file, "wb") as f:
-            pickle.dump(inventory, f)
-        
-        # Append the item's total cost and new grand total to the respective lists
-        item_total_cost = round(price * quantity, 2)
-        y_item_count.append(quantity)
-        y_total_cost.append(item_total_cost)
-        y_grand_total.append(round(sum(details["price"] * details["quantity"] for details in inventory.values()), 2))
-
-        # Load existing data from file or initialize empty data
-        try:
-            with open('data.json', 'r') as f:
-                data = json.load(f)
-        except FileNotFoundError:
-            data = {"x_data": [], "y_grand_total": [], "last_inventory_state": None}
-            
-        # Add the current date/time to the x_data list
-        now = datetime.now()
-        x_data.append(now.strftime("%m/%d/%Y %I:%M:%S %p"))
-        
-        # Append the current date/time and new grand total to the existing data
-        now = datetime.now()
-        data["x_data"].append(now.strftime("%m/%d/%Y %I:%M:%S %p"))
-        data["y_grand_total"].append(y_grand_total[-1])
-        data["last_inventory_state"] = str(inventory)
-
-        # Write the updated data to the JSON file
-        with open("data.json", "w") as f:
-            json.dump(data, f)
-
-=======
         name = name.title()
         price = float(request.form["price"])
         quantity = int(request.form["quantity"])
@@ -372,7 +266,6 @@ def add():
             with open("data.json", "w") as f:
                 json.dump(data, f)
     
->>>>>>> 02abf5c (changed app layout, added media queries, fixed budget function)
     # Update the graph layout
     layout = go.Layout(title="Inventory Statistics",
                        xaxis=dict(title="Date and Time"),
@@ -391,10 +284,6 @@ def add():
     return render_template("add.html", graphJSON=graphJSON)
 
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 02abf5c (changed app layout, added media queries, fixed budget function)
 @app.route("/remove/<name>")
 def remove(name):
     # Get the quantity to remove from the query string parameter
@@ -446,24 +335,12 @@ def remove(name):
         # Write the updated data to the JSON file
         with open('data.json', 'w') as f:
             json.dump(data, f)
-<<<<<<< HEAD
-
-
-=======
->>>>>>> 02abf5c (changed app layout, added media queries, fixed budget function)
     else:
         flash(f'{name} not found in inventory.', 'error')
 
     return redirect(url_for('view'))
 
-<<<<<<< HEAD
-
-
-
-      
-=======
     
->>>>>>> 02abf5c (changed app layout, added media queries, fixed budget function)
 # route to view html
 @app.route("/view")
 def view():
@@ -495,11 +372,7 @@ def view():
 @app.route("/search", methods=["GET", "POST"])
 def search():
     if request.method == "POST":
-<<<<<<< HEAD
-        name = request.form["name"] # gets input
-=======
         name = request.form["name"]# gets input
->>>>>>> 02abf5c (changed app layout, added media queries, fixed budget function)
         filtered_inventory = {}
         for item_name, item_details in inventory.items(): 
             if name.lower() in item_name.lower(): # check if name exists
@@ -516,15 +389,10 @@ def search():
     else:
         return render_template("search.html")
 
-<<<<<<< HEAD
-if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=8080, debug=True)
-
-=======
 
 if __name__ == '__main__':
-    #app.run(host='0.0.0.0', port=8080, debug=True)
-    bind = "0.0.0.0:8080"
+    #app.run(host='0.0.0.0', port=80, debug=True)
+    bind = "0.0.0.0:9000"
     workers = 1
     loglevel = "debug"
     accesslog = "-"
@@ -536,4 +404,3 @@ if __name__ == '__main__':
     gunicorn_config = {'bind': bind, 'workers': workers, 'loglevel': loglevel,
                        'accesslog': accesslog, 'errorlog': errorlog, 'proc_name': proc_name}
     StandaloneApplication(app, gunicorn_config).run()
->>>>>>> 02abf5c (changed app layout, added media queries, fixed budget function)
