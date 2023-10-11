@@ -6,15 +6,10 @@ This is a Flask web app that allows you to manage an inventory of items. You can
 
 To run this web app, you will need to have the following dependencies installed:
 
-- click==8.1.3
-- colorama==0.4.6
-- Flask==2.2.3
-- itsdangerous==2.1.2
-- Jinja2==3.1.2
-- MarkupSafe==2.1.2
-- plotly==5.13.1
-- tenacity==8.2.2
-- Werkzeug==2.2.3
+- Flask==3.0.0
+- gunicorn==21.2.0
+- plotly==5.17.0
+- Requests==2.31.0
 
 You can install these dependencies using the `requirements.txt` file by running the following command:
 
