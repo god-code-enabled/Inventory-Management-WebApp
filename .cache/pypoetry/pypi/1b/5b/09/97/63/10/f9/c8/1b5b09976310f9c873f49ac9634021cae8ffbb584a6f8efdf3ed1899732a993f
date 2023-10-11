@@ -1,1 +1,0 @@
-9999999999{"name": "plotly", "version": "5.13.1", "summary": "An open-source, interactive data visualization library for Python", "platform": null, "requires_dist": ["tenacity (>=6.2.0)"], "requires_python": ">=3.6", "files": [], "_cache_version": "1.0.0"}

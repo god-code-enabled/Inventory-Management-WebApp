@@ -1,1 +1,0 @@
-9999999999{"name": "Flask-WTF", "version": "1.1.1", "summary": "Form rendering, validation, and CSRF protection for Flask with WTForms.", "platform": null, "requires_dist": ["Flask", "WTForms", "itsdangerous", "email-validator ; extra == 'email'"], "requires_python": ">=3.7", "files": [], "_cache_version": "1.0.0"}
