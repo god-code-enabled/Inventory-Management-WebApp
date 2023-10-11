@@ -1,61 +1,47 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    <title>Search Inventory</title>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Inventory Management</title>
+    <title>Search Inventory</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
 </head>
-<<<<<<< HEAD
-<body class="webpage mobile-index">
-    <h1 class>Search Inventory</h1>
-    <form method="POST" action="{{ url_for('search') }}">
-        <label for="name">Name:</label>
-        <input type="text" name="name" placeholder = "search..">
-        <input type="submit" value="Search">
-=======
+
 <body class="search-body">
     <h1 class="search-h1">Search Inventory</h1>
     <form method="POST" action="{{ url_for('search') }}">
         <label for="name">Name:</label>
-        <input type="text" name="name" placeholder = "search..">
-        <input type="submit" value="Search" class= "add-item-button">
->>>>>>> 02abf5c (changed app layout, added media queries, fixed budget function)
+        <input type="text" name="name" placeholder="search..">
+        <input type="submit" value="Search" class="add-item-button">
     </form>
     {% if name %}
         {% if details %}
             <h2>Search Results:</h2>
-<<<<<<< HEAD
-            <table>
-=======
-            <div class="results-container">   
-            <table class="results">
->>>>>>> 02abf5c (changed app layout, added media queries, fixed budget function)
-                <tr>
-                    <th>Product</th>
-                    <th>Price</th>
-                    <th>Quantity</th>
-                    <th>Total</th>
-                </tr>
-                {% for item_name, item_details in details.items() %}
+            <div class="results-container">
+                <table class="results">
                     <tr>
-                        <td>{{ item_name }}</td>
-                        <td>{{ item_details["price"] }}</td>
-                        <td>{{ item_details["quantity"] }}</td>
-                        <td>{{ item_details["price"] * item_details["quantity"]|round(2) }}</td>
+                        <th>Product</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Total</th>
                     </tr>
-                {% endfor %}
-                <tr>
-                    <td>Total</td>
-                    <td></td>
-                    <td></td>
-                    <td>{{ total }}</td>
-                </tr>
-            </table>
-<<<<<<< HEAD
-=======
-            </div>    
->>>>>>> 02abf5c (changed app layout, added media queries, fixed budget function)
+                    {% for item_name, item_details in details.items() %}
+                        <tr>
+                            <td>{{ item_name }}</td>
+                            <td>{{ item_details["price"] }}</td>
+                            <td>{{ item_details["quantity"] }}</td>
+                            <td>{{ item_details["price"] * item_details["quantity"]|round(2) }}</td>
+                        </tr>
+                    {% endfor %}
+                    <tr>
+                        <td>Total</td>
+                        <td></td>
+                        <td></td>
+                        <td>{{ total }}</td>
+                    </tr>
+                </table>
+            </div>
         {% else %}
             <p>No matching items found</p>
         {% endif %}
@@ -64,9 +50,8 @@
     {% endif %}
 
     <form method="get" action="{{ url_for('index') }}">
-        <button 
-            type="submit"> &nbsp;&nbsp;&nbsp;Main Menu&nbsp;&nbsp;&nbsp;    
-        </button>
+        <button type="submit">Main Menu</button>
     </form>
 </body>
+
 </html>
