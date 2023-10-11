@@ -1,46 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<<<<<<< HEAD
-    <meta name="viewport"      
-    content="width=device-width, initial-       scale=1.0, user-scalable=no">
-=======
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
->>>>>>> 02abf5c (changed app layout, added media queries, fixed budget function)
-    
-    <title>Add Product</title>
-    
-    <title>Add New Item </title>
+    <title>Add New Item</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
-
-<<<<<<< HEAD
-
-</head>
-  
-<body class="webpage">
-    <h1>Add New Item To Inventory</h1>
-    <form method="POST" action="{{ url_for('add') }}">
-        <label for="name">Product Name:</label>
-        <input type="text" name="name" id="name" placeholder = "..." required><br>
-
-        <label for="price">Price:</label>
-        <input type="number" name="price" id="price" step="0.01" placeholder = $0.00 required><br>
-
-        <label for="quantity">Quantity:</label>
-        <input type="number" name="quantity" id="quantity" placeholder = 0 required><br>
-        <div></p></p> </div>
-        <div><p></p></div>
-        <input type="submit" value="Add Item">
-    </form>
-    <div></p></p> </div>
-    <div><p></p></div>
-    <form method="get" action="{{ url_for('view') }}">
-        <button type="submit">View Inventory</button>
-    </form>
-=======
 </head>
   
 <body class="add-body">
@@ -57,13 +22,13 @@
     <h1>New Item</h1>
       <form method="POST" action="{{ url_for('add') }}">
         <label for="name">Product Name:</label>
-        <input type="text" name="name" id="name" placeholder = "..." required><br>
+        <input type="text" name="name" id="name" placeholder="..." required><br>
     
         <label for="price">Price:</label>
-        <input type="number" name="price" id="price" step="0.01" placeholder = $0.00 required><br>
+        <input type="number" name="price" id="price" step="0.01" placeholder="$0.00" required><br>
     
         <label for="quantity">Quantity:</label>
-        <input type="number" name="quantity" id="quantity" placeholder = 0 required><br>
+        <input type="number" name="quantity" id="quantity" placeholder="0" required><br>
     
         <input type="submit" value="Add Item" class="add-item-button">
       </form>
@@ -71,8 +36,6 @@
       <form method="get" action="{{ url_for('view') }}">
         <button type="submit">View Inventory</button>
       </form>
-
->>>>>>> 02abf5c (changed app layout, added media queries, fixed budget function)
 
     <script>
         function viewInventory() {
