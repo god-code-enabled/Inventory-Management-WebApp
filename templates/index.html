@@ -1,28 +1,22 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-<!-- Index displays main menu  -->
-    <title>Inventory Management</title>
-    <head>
-<<<<<<< HEAD
+
+<head>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-=======
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=0.8">
->>>>>>> 02abf5c (changed app layout, added media queries, fixed budget function)
     <title>Inventory Management</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-    <script src="{{ url_for('static', filename='budget_warning.js') }}"></script> 
-
-<<<<<<< HEAD
+    <script src="{{ url_for('static', filename='budget_warning.js') }}"></script>
     <style>
         #live-graph {
             text-align: center;
             max-width: 800px;
             margin: 0 auto;
             transform: translateX(-175px);
+        }
 
-            @media (min-width: 480px) {
+        @media (min-width: 480px) {
             /* For screens wider than 480px */
             #live-graph {
                 max-width: 300px;
@@ -30,7 +24,6 @@
             }
         }
     </style>
-      
 </head>
 
 <body class="webpage index-page mobile-index">
@@ -44,89 +37,36 @@
 
     <form method="get" action="{{ url_for('view') }}">
         <button type="submit">View Inventory</button>
-    </form>  
+    </form>
 
     <form action="{{ url_for('search') }}" method="GET">
         <button type="submit">Search Inventory</button>
     </form>
 
-
     <div class="graph-container">
         <div id="live-graph"></div>
     </div>
-  
+
     <form action="{{ url_for('update_budget') }}" method="POST">
         <label for="budget">Set Budget:</label>
         <input type="text" id="budget" name="budget" placeholder="$0.00" onkeypress='return event.charCode >= 48 && event.charCode <= 57' required onblur="formatNumber()">
-
-
-        <button type="submit">Save</button> 
+        <button type="submit">Save</button>
     </form>
 
-=======
-</head>
-
-<body >
-<!--   <div class="nav-container">
-   <nav>
-            <ul>
-                <li><a href="{{ url_for('add') }}">Add Product</a></li>
-                <li><a href="{{ url_for('view') }}">View Inventory</a></li>
-                <li><a href="{{ url_for('search') }}">Search Inventory</a></li>
-            </ul>
-        </nav>
-  </div> -->
-    <div class="header">
-        <h1 class="index-h1">I.B.M. System</h1>
-    </div>
-
-    <div class="graph-container">
-        <div id="live-graph"></div>
-    </div>
-  <div class="button-container">
-      <form method="get" action="{{ url_for('add') }}">
-        <button type="submit">Add Product</button>
-      </form>
-    
-      <form method="get" action="{{ url_for('view') }}">
-        <button type="submit">View Inventory</button>
-      </form>  
-    
-      <form action="{{ url_for('search') }}" method="GET">
-        <button type="submit">Search Inventory</button>
-      </form>   
-    </div>
-  
-  
-      <div class="search-container">   
-        <form action="{{ url_for('update_budget') }}" method="POST" id="budget-form">
-          <label for="budget">Set Budget:</label><br>
-          <input type="text" id="budget" name="budget" placeholder="$0.00" onkeypress='return event.charCode >= 48 && event.charCode <= 57' required onblur="formatNumber()"><br>
-          <button type="submit">Save</button> 
-      </form> 
-     </div>    
-
- 
-    <form action="{{ url_for('update_budget') }}" method="POST">
-      
->>>>>>> 02abf5c (changed app layout, added media queries, fixed budget function)
     <script>
         function formatNumber() {
             var budgetInput = document.getElementById('budget');
             var value = parseInt(budgetInput.value.replace(/,/g, ''));
             budgetInput.value = value.toLocaleString('en-US');
         }
-<<<<<<< HEAD
-=======
 
         var budgetForm = document.getElementById('budget-form');
-        budgetForm.addEventListener('submit', function(event) {
+        budgetForm.addEventListener('submit', function (event) {
             var budgetInput = document.getElementById('budget');
             if (isNaN(parseInt(budgetInput.value.replace(/,/g, '')))) {
                 event.preventDefault();
             }
         });
->>>>>>> 02abf5c (changed app layout, added media queries, fixed budget function)
     </script>
 
     <script>
@@ -142,76 +82,79 @@
             graphData = JSON.parse('{{ graphJSON|safe }}');
         }
 
-    // Add drag and hover zoom to layout
-    graphData.layout.dragmode = 'pan';
-    graphData.layout.hovermode = 'closest';
-    graphData.layout.xaxis = {
-        rangeselector: {
-            buttons: [
-                {
-                    count: 1,
-                    label: '1m',
-                    step: 'month',
-                    stepmode: 'backward'
-                },
-                {
-                    count: 6,
-                    label: '6m',
-                    step: 'month',
-                    stepmode: 'backward'
-                },
-                {
-                    count: 1,
-                    label: 'YTD',
-                    step: 'year',
-                    stepmode: 'todate'
-                },
-                {
-                    count: 1,
-                    label: '1y',
-                    step: 'year',
-                    stepmode: 'backward'
-                },
-                {
-                    label: 'All',
-                    step: 'all'
-                }
-            ]
-        },
-        rangeslider: {}
-    };
-
-    // Add the budget cap line to the layout
-    graphData.layout.shapes = [
-        {
-            type: 'line',
-            xref: 'paper',
-            x0: 0,
-            y0: {{ budget|safe }},
-            x1: 1,
-            y1: {{ budget|safe }},
-            line:{
-                color: 'red',
-                width: 2,
-                dash: 'dash'
-            }
-        }
-    ];
-
-    Plotly.plot(graphDiv, graphData.data, graphData.layout);
-
-    var interval = setInterval(function () {
-        Plotly.extendTraces(graphDiv, {
-            x: [[new Date().toISOString()]],
-            y: [[{{ grand_total|safe }}]],
-            text: [[{{ item_details|safe }}]]
-        }, [0]);
-
-        // Save the updated graph data to local storage
-        var updatedData = {
-            data: graphDiv.data,
-            layout: graphDiv.layout
+        // Add drag and hover zoom to layout
+        graphData.layout.dragmode = 'pan';
+        graphData.layout.hovermode = 'closest';
+        graphData.layout.xaxis = {
+            rangeselector: {
+                buttons: [
+                    {
+                        count: 1,
+                        label: '1m',
+                        step: 'month',
+                        stepmode: 'backward'
+                    },
+                    {
+                        count: 6,
+                        label: '6m',
+                        step: 'month',
+                        stepmode: 'backward'
+                    },
+                    {
+                        count: 1,
+                        label: 'YTD',
+                        step: 'year',
+                        stepmode: 'todate'
+                    },
+                    {
+                        count: 1,
+                        label: '1y',
+                        step: 'year',
+                        stepmode: 'backward'
+                    },
+                    {
+                        label: 'All',
+                        step: 'all'
+                    }
+                ]
+            },
+            rangeslider: {}
         };
-        localStorage.setItem('graphData', JSON.stringify(updatedData));
-    }, 1000);
-</script>
+
+        // Add the budget cap line to the layout
+        graphData.layout.shapes = [
+            {
+                type: 'line',
+                xref: 'paper',
+                x0: 0,
+                y0: {{ budget|safe }},
+                x1: 1,
+                y1: {{ budget|safe }},
+                line: {
+                    color: 'red',
+                    width: 2,
+                    dash: 'dash'
+                }
+            }
+        ];
+
+        Plotly.plot(graphDiv, graphData.data, graphData.layout);
+
+        var interval = setInterval(function () {
+            Plotly.extendTraces(graphDiv, {
+                x: [[new Date().toISOString()]],
+                y: [[{{ grand_total|safe }}]],
+                text: [[{{ item_details|safe }}]]
+            }, [0]);
+
+            // Save the updated graph data to local storage
+            var updatedData = {
+                data: graphDiv.data,
+                layout: graphDiv.layout
+            };
+            localStorage.setItem('graphData', JSON.stringify(updatedData));
+        }, 1000);
+    </script>
+</body>
+
+</html>
