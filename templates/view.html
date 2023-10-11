@@ -1,89 +1,60 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>View Inventory</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
-<<<<<<< HEAD
-    <style>
-        @media only screen and (max-width: 320px) {
-            table {
-                font-size: 14px;
-            }
-
-            .table-cell {
-                padding: 10px;
-            }
-
-            th {
-                font-size: 16px;
-            }
-        }
-    </style>
 </head>
-<body class="webpage ">
-    <h1>Inventory</h1>
-     
-    <table style="margin-left: -100px;">
-=======
 
-</head>
-<body class ="view-body">
-  <div  class="view-body" id="view-body">
-   <div class="view-header">
+<body class="view-body">
+    <div class="view-header">
         <h1 class="view-h1">Inventory</h1>
     </div>
-   <div class="table-wrapper">  
-    <table>
->>>>>>> 02abf5c (changed app layout, added media queries, fixed budget function)
-        <thead>
-            <tr>
-                <th class="table-cell">
-                    <a href="{{ url_for('view', sort_by='name', sort_order=sort_order) }}">Product</a>
-                </th>
-                <th class="table-cell">
-                    <a href="{{ url_for('view', sort_by='price', sort_order=sort_order) }}">Price</a>
-                </th>
-                <th class="table-cell">
-                    <a href="{{ url_for('view', sort_by='quantity', sort_order=sort_order) }}">Quantity</a>
-                </th>
-                <th class="table-cell">Total</th>
-                 <th class="table-cell">Delete Item</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for name, details in inventory %}
-            <tr>
-                <td class="table-cell">{{ name }}</td>
-                <td class="table-cell">{{ details['price'] }}</td>
-                <td class="table-cell">{{ details['quantity'] }}</td>
-                <td class="table-cell">{{ "{:.2f}".format(details['price'] * details['quantity']) }}</td>
-                <td><a href="{{ url_for('remove', name=name) }}" onclick="event.preventDefault(); var qty = prompt('Enter quantity to remove:'); if (qty) { window.location.href = '{{ url_for('remove', name=name) }}?qty=' + qty; }">Remove</a>
-</td>
-            </tr>
-            {% endfor %}
-            <tr>
-                <td colspan="3">Grand Total:</td>
-                <td class="table-cell">{{ "{:.2f}".format(total) }}</td>
-                <td><a href="{{ url_for('view') }}">Refresh</a></td>
-            </tr>
-        </tbody>
-    </table>
-<<<<<<< HEAD
-=======
-  </div>
->>>>>>> 02abf5c (changed app layout, added media queries, fixed budget function)
+    <div class="table-wrapper">
+        <table>
+            <thead>
+                <tr>
+                    <th class="table-cell">
+                        <a href="{{ url_for('view', sort_by='name', sort_order=sort_order) }}">Product</a>
+                    </th>
+                    <th class="table-cell">
+                        <a href="{{ url_for('view', sort_by='price', sort_order=sort_order) }}">Price</a>
+                    </th>
+                    <th class="table-cell">
+                        <a href="{{ url_for('view', sort_by='quantity', sort_order=sort_order) }}">Quantity</a>
+                    </th>
+                    <th class="table-cell">Total</th>
+                    <th class="table-cell">Delete Item</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for name, details in inventory %}
+                <tr>
+                    <td class="table-cell">{{ name }}</td>
+                    <td class="table-cell">{{ details['price'] }}</td>
+                    <td class="table-cell">{{ details['quantity'] }}</td>
+                    <td class="table-cell">{{ "{:.2f}".format(details['price'] * details['quantity']) }}</td>
+                    <td><a href="{{ url_for('remove', name=name) }}" onclick="event.preventDefault(); var qty = prompt('Enter quantity to remove:'); if (qty) { window.location.href = '{{ url_for('remove', name=name) }}?qty=' + qty; }">Remove</a>
+                    </td>
+                </tr>
+                {% endfor %}
+                <tr>
+                    <td colspan="3">Grand Total:</td>
+                    <td class="table-cell">{{ "{:.2f}".format(total) }}</td>
+                    <td><a href="{{ url_for('view') }}">Refresh</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
     <form method="get" action="{{ url_for('add') }}">
         <button type="submit">Add item</button>
     </form>
     <form method="get" action="{{ url_for('index') }}">
         <button type="submit">Main Menu</button>
     </form>
-<<<<<<< HEAD
-=======
-  </div>
->>>>>>> 02abf5c (changed app layout, added media queries, fixed budget function)
 </body>
+
 </html>
