@@ -1,17 +1,12 @@
-<<<<<<< HEAD
 @media only screen and (max-width: 320px) {
   table {
     width: 100%;
     max-width: 100%;
-  }  
-  
+  }
+
   .mobile-index {
     zoom: 50%;
     font-size: 10px;
-    #live-graph {
-        max-width: 32px;
-        transform: translateX(-150px);
-  }
   }
 
   .webpage {
@@ -20,12 +15,13 @@
     margin: 1em 0;
     zoom: 70%;
   }
-  
-  td, th {
+
+  td,
+  th {
     display: block;
     text-align: center;
   }
-  
+
   td:before {
     content: attr(data-label);
     float: left;
@@ -55,16 +51,7 @@
     box-shadow: 0 3px 0 #00425f;
     transform: translateY(2px);
   }
-  
-  input[type="submit"]:hover {
-    background-color: #006388;
-    box-shadow: 0 3px 0 #00425f;
-    transform: translateY(2px);
-  }
-  
 }
-
-
 
 @media only screen and (max-width: 428px) {
   .mobile-index {
@@ -94,19 +81,13 @@
     box-shadow: 0 3px 0 #00425f;
     transform: translateY(2px);
   }
-  
-  input[type="submit"]:hover {
-    background-color: #006388;
-    box-shadow: 0 3px 0 #00425f;
-    transform: translateY(2px);
-  }
-  
+
   .webpage {
     text-align: center;
     font-size: 1em;
     margin: 1em 0;
   }
-  
+
   .webpage input[type="submit"],
   .webpage button {
     padding: 14px;
@@ -122,6 +103,7 @@
     box-shadow: 0 5px 0 #006388;
     transition: 0.2s;
   }
+
   .webpage input[type="submit"]:hover,
   .webpage button:hover {
     background-color: #006388;
@@ -186,107 +168,7 @@
 table {
   width: 100%;
   border-collapse: collapse;
-  margin: 0 auto; /* add this line to center the table horizontally */
-=======
-a:link, a:visited {
-  color: #009dff; /* Set the default color for nav links */
-  text-shadow: 1px 1px 1px #3c6c80; /* Make links look better */
-}
-
-a:hover, a:focus {
-  color: #fbff00; /* Set the color for nav links on hover and focus */
-  
-  text-decoration: none;
-}
-
-
-body {
-  display: block;
-  text-align: center;
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  padding: 1rem;
-  background-color: #004d65;
-  color: white;
-  border: none;
-  border-radius: 5rem;
-  font-size: 1rem;
-  width: 200px;
-  text-shadow: 0.3px 0.6px 0.4px #004d65;
-  transition: 0.2s;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-  .search-body {
-    display: flex-end;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    align-content: center;
-    transform: scale(1);
-    transform-origin: top left;
-    margin: 5rem auto;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-.graph-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  margin: 2rem;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-h1 {
-  text-align: center;
-  font-size: 1.5em;
-  border: 0.5rem solid #004d65;
-  padding: 0.1rem;
-  background-color: #004d65;
-  box-shadow: 5px 5px 5px #00364a;
-  text-shadow: 5px 5px 5px #00364a;
-  border-radius: 1rem;
-  display: inline-block;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-/* tables style */
-.table-cell {
-  padding: 1rem;
-  text-align: left;
-  border: 0.1rem solid #26425f;
-  display: table-cell;
-  justify-content: center;
-  align-items: center;
-
-  font-weight: bold;
-  text-shadow: 0.03rem 0.03rem 0.1rem #092d53;
-  border-radius: 0.2rem;
-}
-
-.table-wrapper {
-  min-width: 320px;
-  max-width: 90%;
   margin: 0 auto;
-}
-
-table {
-  display: inline;
-  position: relative;
-  align-content: center;
-  justify-content: center;
-  border-collapse: collapse;
-  box-shadow: 0.1em 0.2em 2em #00364a;
-  margin: 1em auto;
-  margin-left: auto;
-  margin-right: auto;
-  left: -9rem;
- 
->>>>>>> 02abf5c (changed app layout, added media queries, fixed budget function)
 }
 
 th {
@@ -294,28 +176,17 @@ th {
   background-color: #006d8f;
   color: white;
   text-align: left;
-<<<<<<< HEAD
-}
-
-tr {
-  border-bottom: 1px solid #ccc;
-=======
   text-transform: uppercase;
   text-shadow: 0.1em 0.3em 0.5em #004d65;
 }
 
 tr {
   border-bottom: 1px solid #232323;
->>>>>>> 02abf5c (changed app layout, added media queries, fixed budget function)
 }
 
 td {
   padding: 0.5em;
-<<<<<<< HEAD
-  background-color: #678597;
-=======
   background-color: #5e7c97;
->>>>>>> 02abf5c (changed app layout, added media queries, fixed budget function)
 }
 
 tr:last-child td:first-child {
@@ -326,36 +197,6 @@ tr:last-child td:first-child {
   display: inline-block;
 }
 
-<<<<<<< HEAD
-.index-page h1{
-  text-align: center;
-  font-size: 2em;
-  margin: 1em 0;
-  border: 4px solid #004d65;
-  padding: 20px;
-  background-color: #004d65;
-  box-shadow: 5px 5px 5px #00364a;
-  border-radius: 10px;
-  display: inline-block;
-  margin-left: 3px;
-}
-  
-}
-
-.index-h1{
-  text-align: center;
-  font-size: 2em;
-  margin: 1em 0;
-  border: 4px solid #004d65;
-  padding: 20px;
-  background-color: #004d65;
-  box-shadow: 5px 5px 5px #00364a;
-  border-radius: 10px;
-  display: inline-block;
-  margin-left: -10px;
-}
-
-
 h1 {
   text-align: center;
   font-size: 2em;
@@ -366,7 +207,6 @@ h1 {
   box-shadow: 5px 5px 5px #00364a;
   border-radius: 10px;
   display: inline-block;
-  
 }
 
 label {
@@ -387,110 +227,24 @@ input[type="number"] {
 input[type="submit"],
 button {
   padding: 10px;
-=======
-.view-header {
-  display: flex;
-  margin-left: 45px;
-}
-
-td:before {
-  content: attr(data-label);
-  float: left;
-  font-weight: bold;
-  text-transform: uppercase;
-}
-
-tr:last-child td:first-child {
-  font-weight: bold;
-}
-
-  
-}
-
-/* button styles  */
-label {
-  display: block;
-  align-content: center;
-  font-weight: bold;
-  margin-left: auto;
-  margin-right: auto;
-  margin: 0.5em;
-}
-
-input[type="text"],
-input[type="number"]
-{
-  display: flex;
-  align-content: center;
-  justify-content: center;
-  padding: 0.5em;
-  margin-bottom: 0.6rem;
-  margin-top: 0.6rem;
-  padding-top: 0.6rem;
-  margin-left: -0.4rem;
-  border: 1.5px solid #004d65;
-  box-shadow: 0.1em 0.2em 1em #00364a;
-  border-radius: 5px;
-  font-size: 1.0em;
-}
-
-.button-container {
-  display: flex;
-  justify-content: center;
-  margin-top: 1em;
-}
-
-.button-container form {
-  margin: 0 0.5em;
-}
-
-button[type="submit"], 
-input[type="submit"] {
-  margin: 0;
-  padding-top: 1rem;
-  margin-top: 0.5rem;
-  margin-bottom: 1rem;
-  margin-left: auto;
-  margin-right: 1rem;
-  min-width: 80%;
-  max-width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  font-size: 1rem;
-  padding: 0.7rem 1.5rem;
->>>>>>> 02abf5c (changed app layout, added media queries, fixed budget function)
+  width: 200px;
   background-color: #008CBA;
   color: white;
   border: none;
   border-radius: 5px;
-<<<<<<< HEAD
   font-size: 20px;
   cursor: pointer;
   display: block;
   margin: 20px auto;
-  width: 200px;
   box-shadow: 0 5px 0 #006388;
   transition: 0.2s;
 }
-
 
 input:hover,
 button:hover {
   background-color: #53d5fd;
   padding-right: 28px;
   padding-left: 4px;
-/*   box-shadow: yellow 1px 0 10px; */
-  border-radius: 20px;
-  box-shadow: 0 5px 0 #FFFF00;
-  transform: translateY(2px);
-
-input:hover,
-button:hover {
-  padding-right: 28px;
-  padding-left: 4px;
-/*   box-shadow: yellow 1px 0 10px; */
   border-radius: 20px;
   box-shadow: 0 5px 0 #FFFF00;
   transform: translateY(2px);
@@ -501,8 +255,6 @@ button:active {
   transform: translateY(4px);
 }
 
-
-  
 input:after,
 button:after {
   content: '\2190';
@@ -512,25 +264,6 @@ button:after {
   right: -40px;
   transition: 0.2s;
 }
-=======
-  cursor: pointer;
-  box-shadow: 0.2em 0.4em 1em #00364a;
-  text-shadow: 1px 3px 3px #004d65;
-  transition: 0.2s;
-  left: -1rem ;
-}
-
-button[type="submit"]:hover,
-input[type="submit"]:hover{
-  background-color: #36a7c9;
-  box-shadow: 0px 3px 2px #FFFF00;
-  text-shadow: 0px 1px 0px #FFFF00;
-  transform: translateY(-0.05rem);
-}
-
-.button-container button:not(:last-child) {
-  margin-right: 0.5em;
-}
 
 .results-container {
   display: flex;
@@ -538,34 +271,32 @@ input[type="submit"]:hover{
   align-items: center;
   width: 100%;
 }
-.results{
-    left: 0;
-    box-shadow: 0.2em 0.4em 1em #00364a;
+
+.results {
+  left: 0;
+  box-shadow: 0.2em 0.4em 1em #00364a;
 }
 
 /* Mobile devices */
 @media only screen and (max-width: 767px) {
-  /* CSS styles for mobile devices */
   table {
     zoom: 70%;
     margin: 0 auto;
     left: -6.7rem;
     padding-bottom: 0.6rem;
   }
-  .results {
 
+  .results {
     zoom: 100%;
     margin-bottom: 5rem auto;
     left: 0.12rem;
   }
-  /* ... */
 }
 
 /* Tablets */
 @media only screen and (min-width: 768px) and (max-width: 1024px) {
-  /* CSS styles for tablets */
-
-  .view-body, .table-wrapper {
+  .view-body,
+  .table-wrapper {
     display: block;
     justify-content: center;
     align-items: center;
@@ -576,16 +307,13 @@ input[type="submit"]:hover{
     margin-right: auto;
     transform: scale(1.05);
     transform-origin: center;
-}
-
+  }
 }
 
 /* Extra-large tablets */
 @media screen and (min-width: 1025px) and (max-width: 1280px) {
-  /* Your styles for extra-large tablets */
- 
-
-  .view-body, .table-wrapper {
+  .view-body,
+  .table-wrapper {
     display: block;
     justify-content: center;
     align-items: center;
@@ -595,23 +323,19 @@ input[type="submit"]:hover{
     margin-right: auto;
     transform: scale(1);
     transform-origin: center;
+  }
 }
-      
-}
-
-
 
 /* Large desktops */
 @media only screen and (min-width: 1200px) and (max-width: 1600px) {
-  /* CSS styles for large desktops */
-
- 
   .search-body {
     transform: scale(1.25);
     transform-origin: center;
     margin: 5rem auto;
   }
-  .view-body, .table-wrapper {
+
+  .view-body,
+  .table-wrapper {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -621,46 +345,48 @@ input[type="submit"]:hover{
     margin-right: auto;
     transform: scale(1.0);
     transform-origin: center;
+  }
 }
 
 /* 4K screens */
 @media screen and (min-width: 1000px) and (min-height: 2000px) {
-  /* CSS styles for 4K screens */
- 
-  .view-body, .table-wrapper {
+  .view-body,
+  .table-wrapper {
     max-width: 90%;
     margin-left: auto;
     margin-right: auto;
     transform: scale(1.1);
     transform-origin: top left;
   }
+
   .search-body {
     transform: scale(1.5);
     transform-origin: center;
     margin: 6rem auto;
   }
+
   body {
     margin: 1rem;
   }
 }
 
 @media screen and (min-width: 3840px) and (min-height: 2160px) {
-  /* CSS styles for 4K screens */
-
-  .view-body, .table-wrapper {
+  .view-body,
+  .table-wrapper {
     max-width: 80%;
     margin-left: auto;
     margin-right: auto;
     transform: scale(1.5);
     transform-origin: top left;
   }
+
   .search-body {
     transform: scale(1.5);
     transform-origin: center;
     margin: 6rem auto;
   }
+
   body {
     margin: 1rem;
   }
 }
->>>>>>> 02abf5c (changed app layout, added media queries, fixed budget function)
