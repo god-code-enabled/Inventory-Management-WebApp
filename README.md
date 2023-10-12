@@ -1,32 +1,51 @@
 # Inventory Management Web App
 
-This is a Flask web app that allows you to manage an inventory of items. You can add new items, update the quantity of existing items, view the inventory, and search for items by name. Recently added a budget tracking chart with plotly.
+This Flask web app allows users to manage an inventory of items. It supports the addition of new items, updating the quantity of existing items, viewing the current inventory, and searching for items by name. Additionally, the web app includes a budget tracking chart powered by Plotly.
 
 ## Dependencies
 
-To run this web app, you will need to have the following dependencies installed:
+To run this web app, ensure you have the following dependencies installed:
 
 - Flask==3.0.0
 - gunicorn==21.2.0
 - plotly==5.17.0
 - Requests==2.31.0
 
-You can install these dependencies using the `requirements.txt` file by running the following command:
+You can install these dependencies using the `requirements.txt` file:
 
 ```
 pip install -r requirements.txt
-
 ```
 
 ## Usage
 
-To use this web app, you can follow these steps:
+To use the Inventory Management Web App:
 
-1. Clone this repository to your local machine.
-2. Install the dependencies using the `requirements.txt` file.
-3. Run the `main.py` script to start the Flask web server.
-4. Open a web browser and navigate to `http://localhost:8080` to access the web app.
+1. **Clone the Repository**:
+   ```
+   git clone [repository_url]
+   ```
+   Replace `[repository_url]` with the URL of this repository.
 
-Once you have the web app running, you can add new items by clicking on the "Add Item" button, update the quantity of existing items by editing the quantity field, view the inventory by clicking on the "View Inventory" button, and search for items by name by clicking on the "Search" button.
+2. **Navigate to the Repository**:
+   ```
+   cd path_to_repository
+   ```
+   Replace `path_to_repository` with the path to where you've cloned the repository.
 
+3. **Install Dependencies**:
+   ```
+   pip install -r requirements.txt
+   ```
 
+4. **Run the App with Gunicorn**:
+   ```
+   gunicorn -b 127.0.0.1:9090 -w 1 main:app --log-level debug --access-logfile - --error-logfile -
+   ```
+
+5. **Access the Web App**:
+   Open your favorite browser and navigate to `http://127.0.0.1:9090`.
+
+---
+
+Feel free to adjust or expand upon this content as needed. 
