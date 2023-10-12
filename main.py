@@ -142,8 +142,8 @@ def index():
                        xaxis_fixedrange=True,
                        yaxis_fixedrange=True,
                        height=600,
-                       width=600,
-                       margin=dict(l=100))
+                       width=700,
+                       margin=dict(l=120))
 
     graphJSON = json.dumps({"data": data_for_graph, "layout": layout}, cls=plotly.utils.PlotlyJSONEncoder)
     return render_template("index.html", graphJSON=graphJSON, grand_total=grand_total, budget=budget)
@@ -247,7 +247,7 @@ def search():
 
 
 if __name__ == '__main__':
-    bind = "127.0.0.1:9090"
+    bind = "127.0.0.1:9090" # for testing, using local host. 
     workers = 1
     loglevel = "debug"
     accesslog = "-"
