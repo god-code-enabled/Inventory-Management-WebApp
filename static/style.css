@@ -90,20 +90,6 @@ input[type="text"], input[type="number"] {
     margin-top: 1em;
 }
 
-.plotly-graph-container {
-    width: 100%;           /* Ensures container takes full width of its parent */
-    text-align: center;    /* Centers inline or inline-block content */
-    margin: 0 auto;        /* This could be redundant but ensures block-level centering */
-}
-
-#live-graph {
-    display: inline-block; /* This treats the graph like inline content, allowing it to be centered by the container's text-align property */
-    width: 100%;            /* This can be adjusted as per your design needs */
-    max-width: 596px;      /* Prevents the graph from becoming too wide on large screens */
-    margin: 0 auto;        /* Centers block-level content, but could be redundant here */
-}
-
-
 button[type="submit"], input[type="submit"] {
     padding: 0.7rem 1.5rem;
     background-color: #008CBA;
@@ -127,6 +113,34 @@ button[type="submit"]:hover, input[type="submit"]:hover {
     transform: translateY(-0.05rem);
 }
 
+
+.plotly-graph-container {
+    width: 100%;           /* Ensures container takes full width of its parent */
+    text-align: center;    /* Centers inline or inline-block content */
+    margin: 0 auto;        /* This could be redundant but ensures block-level centering */
+
+
+}
+
+#live-graph {
+    display: inline-block; /* This treats the graph like inline content, allowing it to be centered by the container's text-align property */
+    width: 100%;            /* This can be adjusted as per your design needs */
+    max-width: 700px;      /* Prevents the graph from becoming too wide on large screens */
+    margin: 0 auto;        /* Centers block-level content, but could be redundant here */
+}
+
+@media only screen and (max-width: 600px) {
+    #live-graph {
+        width: 110%; /* Reduce the width for mobile screens */
+        max-width: none; /* Remove the maximum width for flexibility */
+        max-height: 300px; /* Set a maximum height for mobile screens */
+        transform: scale(0.5); /* Adjust the scale factor as needed */
+        transform-origin: top; /* Adjust the origin point for scaling */
+        margin-left: -16vh;
+
+    }
+}
+
 @media only screen and (max-width: 767px) {
     table {
         zoom: 70%;
@@ -135,7 +149,7 @@ button[type="submit"]:hover, input[type="submit"]:hover {
 
 @media only screen and (min-width: 768px) and (max-width: 1024px) {
     .container {
-        transform: scale(1.05);
+        transform: scale(1.3);
     }
 }
 
